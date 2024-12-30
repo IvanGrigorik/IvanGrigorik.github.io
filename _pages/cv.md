@@ -9,18 +9,17 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+## Education
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
+* Ph.D in [The University of Texas at Austin](https://www.ece.utexas.edu/)
+* B.S. in [Belarusian State University of Informatics and Radioelectronics](https://www.bsuir.by/en/)
+
+## Work experience
+
+* Graduate Research Assistant: Academic Pages Collaborator
+  * The University of Texas at Austin
   * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+  * 2024-Present
 
 * Fall 2015: Research Assistant
   * Github University
