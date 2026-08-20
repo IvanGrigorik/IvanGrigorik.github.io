@@ -44,7 +44,7 @@ def main():
 <script src="assets/js/theme-init.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ivan Grigorik</title>
-<meta name="description" content="Ivan Grigorik — PhD student in Electrical and Computer Engineering, The University of Texas at Austin. Research in compilers, software testing, and programming languages.">
+<meta name="description" content="Ivan Grigorik - PhD student in Electrical and Computer Engineering, The University of Texas at Austin. Research in compilers, software testing, and programming languages.">
 <meta property="og:title" content="Ivan Grigorik">
 <meta property="og:description" content="PhD student in Electrical and Computer Engineering, The University of Texas at Austin.">
 <meta property="og:type" content="website">

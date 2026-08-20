@@ -13,7 +13,7 @@
 }
 
 /* Dark mode is opt-in via the nav toggle (adds data-theme="dark" to <html>),
-   not automatic — the site defaults to light regardless of OS preference. */
+   not automatic - the site defaults to light regardless of OS preference. */
 :root[data-theme="dark"] {
   --bg: #15161a;
   --bg-alt: #1b1c21;
@@ -28,6 +28,15 @@
 }
 
 * { box-sizing: border-box; }
+
+/* Smooth light/dark transition when the theme toggle flips data-theme. */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
 
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
@@ -148,7 +157,7 @@ a:hover { text-decoration: underline; }
   .nav-links a { padding: 10px 0; border-bottom: 1px solid var(--border); }
 }
 
-main { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+main { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 56px; }
 
 section { padding: 56px 0; border-bottom: 1px solid var(--border); }
 section:last-of-type { border-bottom: none; }
@@ -162,9 +171,9 @@ section:last-of-type { border-bottom: none; }
   flex-wrap: wrap;
 }
 .avatar {
-  width: 148px;
-  height: 148px;
-  border-radius: 50%;
+  max-width: 25%;
+  height: auto;
+  border-radius: 12px;
   flex-shrink: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -190,19 +199,17 @@ section:last-of-type { border-bottom: none; }
 
 .contacts {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
+  flex-direction: column;
+  gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .contacts li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 0.92rem;
   color: var(--text-muted);
 }
+.contacts li a + a { margin-left: 14px; }
 .contacts a { color: var(--text-muted); }
 .contacts a:hover { color: var(--accent); }
 
@@ -246,17 +253,154 @@ h2 .num {
 }
 .news-body { color: var(--text); }
 
+/* Beyond the 3rd item, main.js hides the rest and adds this button. */
+.news-item-hidden { display: none; }
+.news-more-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 9px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.news-more-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* Publications */
-.pub-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* minmax(0, 1fr), not the default auto: an auto track resolves to
+     max-content, so the un-wrappable bibtex <pre> would widen the whole
+     column (and the page) instead of scrolling inside itself. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  counter-reset: pub-counter;
+}
 .pub-item {
+  position: relative;
+  /* Grid items default to min-width: auto, which floors them at the
+     content's min-content width - reset so the card can stay card-width. */
+  min-width: 0;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 16px 18px 16px 48px;
   box-shadow: var(--shadow);
 }
-.pub-title { font-weight: 600; margin: 0 0 4px; }
-.pub-meta { color: var(--text-muted); font-size: 0.9rem; }
+.pub-item::before {
+  counter-increment: pub-counter;
+  content: counter(pub-counter) ".";
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pub-title { font-weight: 600; margin: 0 0 6px; }
+.pub-authors { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 4px; }
+.pub-authors strong { color: var(--text); font-weight: 600; }
+.pub-venue { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+.pub-links {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  /* No overflow here: the bibtex block scrolls inside itself (.bibtex-code),
+     so this row never widens past the card. */
+  min-width: 0;
+}
+
+/* display: contents unwraps <details> so its <summary> stays inline with
+   the other links instead of jumping to its own row when opened. */
+.pub-bibtex { display: contents; }
+
+/* The non-summary content of a <details> lives in an anonymous UA block.
+   That block - not .bibtex-wrap - is the flex item here, and left alone it
+   sizes to the <pre>'s max-content width and drags the code block outside
+   the card. ::details-content is the only way to reach it: pin it to a
+   full-width row so the <pre> below can scroll inside the card instead. */
+.pub-bibtex::details-content {
+  flex: 0 0 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Older browsers cannot select that anonymous block, so give the whole
+   <details> the full-width row instead. Costs the inline summary, but the
+   code block still stays inside the card. */
+@supports not selector(::details-content) {
+  .pub-bibtex {
+    display: block;
+    flex: 0 0 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+.pub-bibtex summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  list-style: none;
+}
+.pub-bibtex summary::-webkit-details-marker { display: none; }
+.pub-bibtex summary::marker { content: ""; }
+.pub-bibtex summary:hover { text-decoration: underline; }
+
+/* Plain block inside <details>: fills the row the <details> was given, and
+   anchors the absolutely positioned Copy button. */
+.bibtex-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+}
+.bibtex-code {
+  margin: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px 44px 12px 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+.bibtex-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.bibtex-copy:hover { color: var(--accent); border-color: var(--accent); }
+.bibtex-copy.copied { color: var(--accent); border-color: var(--accent); }
 
 .empty-state {
   color: var(--text-muted);
@@ -286,26 +430,26 @@ h2 .num {
   font-size: 0.88rem;
   padding-top: 2px;
 }
-.exp-what strong { font-weight: 600; }
-.exp-what .org { color: var(--text-muted); }
+.exp-what { color: var(--text-muted); }
+.exp-what strong { color: var(--text);
+  font-weight: 600; }
+/* .exp-what .org { color: var(--text-muted); } */
 .exp-what p { margin: 4px 0 0; color: var(--text-muted); font-size: 0.92rem; }
 
-/* Service */
+/* Service - same year/description columns as .exp-item above, so the two
+   sections line up. The year column replaces the old bullet as the left
+   rail, so there is no ::before marker here. */
 .service-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.service-list li {
-  padding-left: 18px;
-  position: relative;
+.service-list li { display: flex; gap: 18px; padding: 2px 0; }
+.service-when {
+  flex-shrink: 0;
+  width: 110px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding-top: 2px;
 }
-.service-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.65em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-}
+.service-what { color: var(--text-muted); }
+.service-what strong { color: var(--text); font-weight: 600; }
 
 /* Interests */
 .tags { display: flex; flex-wrap: wrap; gap: 10px; }
