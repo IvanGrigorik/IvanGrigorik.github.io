@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="assets/js/theme-init.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivan Grigorik</title>
+<meta name="description" content="Ivan Grigorik — PhD student in Electrical and Computer Engineering, The University of Texas at Austin. Research in compilers, software testing, and programming languages.">
+<meta property="og:title" content="Ivan Grigorik">
+<meta property="og:description" content="PhD student in Electrical and Computer Engineering, The University of Texas at Austin.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">Ivan Grigorik</a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#interests">Interests</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" width="22" height="22"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- 1 & 2: Photo + short description (name, position, contacts) -->
+  <section class="hero" id="about">
+    <!--
+      Placeholder photo below. To use a real photo:
+      1. Add your image at images/profile.jpg
+      2. Replace src="images/avatar-placeholder.svg" with src="images/profile.jpg"
+    -->
+    <div class="avatar">
+      <img src="images/avatar-placeholder.svg" alt="Ivan Grigorik">
+    </div>
+    <div class="hero-text">
+      <h1>Ivan Grigorik</h1>
+      <p class="hero-tagline">
+        <strong>PhD Candidate</strong>, Electrical &amp; Computer Engineering<br>
+        The University of Texas at Austin
+      </p>
+      <ul class="contacts">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" stroke-opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
+          <a href="mailto:grigorik@utexas.edu">grigorik@utexas.edu</a>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Austin, TX
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <a href="https://github.com/IvanGrigorik" target="_blank" rel="noopener">IvanGrigorik</a>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://www.linkedin.com/in/grigorik" target="_blank" rel="noopener">grigorik</a>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <a href="https://t.me/IvanGrigorik" target="_blank" rel="noopener">Telegram</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3: Longer description about research and interests -->
+  <section id="research">
+    <h2><span class="num">01</span>Research</h2>
+    <p class="lede">
+      I'm a PhD student in the Department of
+      <a href="https://www.ece.utexas.edu/" target="_blank" rel="noopener">Electrical and Computer Engineering</a>
+      at the University of Texas at Austin, advised by
+      <a href="https://users.ece.utexas.edu/~gligoric/" target="_blank" rel="noopener">Dr. Milos Gligoric</a>.
+      My work sits at the intersection of <strong>compilers</strong>, <strong>software testing</strong>, and
+      <strong>programming languages</strong> — I'm interested in building tools and analyses that make software
+      systems more reliable, efficient, and easier to reason about. Recently, I've been exploring the PyKokkos
+      ecosystem and its development workflow as part of this effort.
+    </p>
+  </section>
+
+  <!-- 4: News -->
+  <section id="news">
+    <h2><span class="num">02</span>News</h2>
+    <ul class="news-list">
+      <li class="news-item">
+        <div class="news-date">Aug 2026</div>
+        <div class="news-body">New personal website is live.</div>
+      </li>
+      <li class="news-item">
+        <div class="news-date">Feb 2026</div>
+        <div class="news-body">Gave a talk on the PyKokkos ecosystem and development cycle at PSAAP (Predictive Science Academic Alliance Program), Oden Institute, UT Austin.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 5: Publications -->
+  <section id="publications">
+    <h2><span class="num">03</span>Publications</h2>
+    <!-- Add entries here as they become available, e.g.:
+    <ul class="pub-list">
+      <li class="pub-item">
+        <p class="pub-title">Paper Title</p>
+        <p class="pub-meta">Authors. Venue, Year. <a href="#">PDF</a></p>
+      </li>
+    </ul>
+    -->
+    <p class="empty-state">No publications yet — this section will be updated as work is completed.</p>
+  </section>
+
+  <!-- 6: Experience -->
+  <section id="experience">
+    <h2><span class="num">04</span>Experience</h2>
+
+    <div class="exp-group">
+      <h3>Research</h3>
+      <div class="exp-item">
+        <div class="exp-when">2024 – Present</div>
+        <div class="exp-what">
+          <strong>Graduate Research Assistant</strong> — <span class="org">The University of Texas at Austin</span>
+          <p>Research in compilers, software testing, and programming languages, advised by Dr. Milos Gligoric.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-group">
+      <h3>Education</h3>
+      <div class="exp-item">
+        <div class="exp-when">2024 – Present</div>
+        <div class="exp-what">
+          <strong>Ph.D., Electrical &amp; Computer Engineering</strong> — <span class="org">The University of Texas at Austin</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-when">&nbsp;</div>
+        <div class="exp-what">
+          <strong>B.S.</strong> — <span class="org">Belarusian State University of Informatics and Radioelectronics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7: Professional Services -->
+  <section id="service">
+    <h2><span class="num">05</span>Professional Service</h2>
+    <!-- Add entries here, e.g.:
+    <ul class="service-list">
+      <li>Reviewer, Conference/Journal Name (2026)</li>
+    </ul>
+    -->
+    <p class="empty-state">Reviewing and service contributions will be listed here.</p>
+  </section>
+
+  <!-- 8: Personal interests (last) -->
+  <section id="interests">
+    <h2><span class="num">06</span>Personal Interests</h2>
+    <div class="tags">
+      <span class="tag">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M8 21l4-13 4 13"/><path d="M2 21l7-14 3 5.5"/><path d="M13 12l3-6 6 15"/></svg>
+        Hiking
+      </span>
+      <span class="tag">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="17" cy="4" r="2"/><path d="M14 22l1-6 -3-3 1-5"/><path d="M9 22l3-8"/><path d="M6 12l3-2 3 3 4-1"/></svg>
+        Running
+      </span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>&copy; 2026 Ivan Grigorik</span>
+  <span><a href="https://github.com/IvanGrigorik/IvanGrigorik.github.io" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
