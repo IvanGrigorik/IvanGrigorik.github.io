@@ -212,6 +212,12 @@ section:last-of-type { border-bottom: none; }
 .contacts li a + a { margin-left: 14px; }
 .contacts a { color: var(--text-muted); }
 .contacts a:hover { color: var(--accent); }
+/* The [GitHub] / [LinkedIn] / [CV] row reads as links at rest, not only on
+   hover. The email above keeps the default underline-on-hover treatment. */
+.contacts .contact-links a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 /* Research / lede text */
 .lede {

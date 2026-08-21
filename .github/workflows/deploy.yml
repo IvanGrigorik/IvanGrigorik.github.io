@@ -29,6 +29,16 @@ jobs:
       - name: Build index.html from partials/
         run: python3 build.py
 
+      # index.html is gitignored and only ever exists in CI, so fail loudly
+      # here rather than shipping an artifact with nothing to serve.
+      - name: Verify index.html was generated
+        run: |
+          if [ ! -s index.html ]; then
+            echo "::error::build.py did not produce a non-empty index.html"
+            exit 1
+          fi
+          echo "index.html: $(wc -c < index.html) bytes"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -47,3 +57,39 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # A green deploy only means the artifact was accepted, not that the
+      # site actually serves anything - so hit the real URL. Retried because
+      # the Pages CDN can take a few seconds to pick up a new deployment.
+      - name: Verify the deployed site responds
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          echo "Checking $PAGE_URL"
+          code=000
+          ok=""
+          for attempt in $(seq 1 10); do
+            code=$(curl -sS -L -o body.html -w '%{http_code}' --max-time 30 "$PAGE_URL" || echo 000)
+            echo "attempt $attempt: HTTP $code"
+            if [ "$code" = "200" ] && grep -q "<title>" body.html; then
+              ok=yes
+              break
+            fi
+            sleep 10
+          done
+          if [ -z "$ok" ]; then
+            echo "::error::$PAGE_URL did not serve a 200 HTML page (last code: $code)"
+            exit 1
+          fi
+
+          # Catch a partial deploy: the page can load while its assets 404.
+          for path in assets/css/style.css assets/js/main.js; do
+            code=$(curl -sS -L -o /dev/null -w '%{http_code}' --max-time 30 "${PAGE_URL}${path}" || echo 000)
+            echo "$path -> HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "::error::${PAGE_URL}${path} returned $code"
+              exit 1
+            fi
+          done
+
+          echo "Site is live: $PAGE_URL"
