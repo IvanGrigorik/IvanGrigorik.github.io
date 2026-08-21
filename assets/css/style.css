@@ -159,7 +159,7 @@ a:hover { text-decoration: underline; }
 
 main { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 56px; }
 
-section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+section { padding: 25px 0; border-bottom: 1px solid var(--border); }
 section:last-of-type { border-bottom: none; }
 
 /* Hero */
@@ -459,6 +459,12 @@ h2 .num {
 
 /* Interests */
 .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+  overflow: visible;
+}
 .tag {
   display: inline-flex;
   align-items: center;
