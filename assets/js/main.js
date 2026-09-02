@@ -49,12 +49,23 @@ var ORDINAL_WORDS = [
   'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'
 ];
 
+// PhD start date. Month is 0-indexed, so 7 is August.
+var PHD_START = { year: 2024, month: 7, day: 15 };
+
 function initPhdYear() {
   var el = document.getElementById('phdYear');
   if (!el) return;
 
-  var startYear = 2024;
-  var years = new Date().getFullYear() - startYear + 1;
+  var now = new Date();
+  var years = now.getFullYear() - PHD_START.year;
+
+  // The year only advances on the anniversary, not on Jan 1. Before this
+  // year's Aug 15 the previous PhD year is still running, so drop one.
+  var beforeAnniversary = now.getMonth() < PHD_START.month ||
+    (now.getMonth() === PHD_START.month && now.getDate() < PHD_START.day);
+  if (beforeAnniversary) years -= 1;
+
+  years += 1;
   years = years > 0 ? years : 1;
   el.textContent = ORDINAL_WORDS[years - 1] || years + 'th';
 }
