@@ -159,8 +159,9 @@ a:hover { text-decoration: underline; }
 
 main { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 56px; }
 
-section { padding: 25px 0; border-bottom: 1px solid var(--border); }
-section:last-of-type { border-bottom: none; }
+/* Scoped to the page's own sections: PDF.js also uses <section> for links. */
+main > section { padding: 25px 0; border-bottom: 1px solid var(--border); }
+main > section:last-of-type { border-bottom: none; }
 
 /* Hero */
 .hero {
@@ -459,12 +460,22 @@ h2 .num {
 
 /* Interests */
 .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+/* Icons are SVG files used as a mask, so only their shape matters: the
+   fill comes from currentColor and follows the tag color in both themes.
+   Add one with a single rule - .icon-<name> { --icon: url(...); }. */
 .tag-icon {
+  display: inline-block;
   width: 1.15em;
   height: 1.15em;
   flex-shrink: 0;
-  overflow: visible;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
 }
+.icon-hiking  { --icon: url('../../icons/hiking.svg'); }
+.icon-running { --icon: url('../../icons/running.svg'); }
+.icon-coding  { --icon: url('../../icons/coding.svg'); }
+.icon-tea     { --icon: url('../../icons/tea.svg'); }
 .tag {
   display: inline-flex;
   align-items: center;
@@ -487,4 +498,122 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+/* CV page (cv.html) */
+.cv-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 28px 0 20px;
+}
+.cv-heading {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cv-btn:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+.cv-btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.cv-btn-primary:hover { color: var(--bg); opacity: 0.9; }
+
+/* Generic PDF viewer, built by assets/js/pdf-viewer.js */
+/* A flex item wider than its container overflows equally on both sides, so
+   the box stays centered on the page as it is resized past the column. */
+.pdf-stage { display: flex; justify-content: center; }
+.pdf-viewer {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: max(420px, calc(100vh - 190px));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-alt);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  /* Standard browser grip in the bottom-right corner. Centered by
+     .pdf-stage, so the widest it can get is the viewport minus a margin. */
+  resize: both;
+  min-width: 280px;
+  min-height: 240px;
+  max-width: calc(100vw - 48px);
+}
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.pdf-group { display: flex; align-items: center; gap: 4px; }
+.pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.pdf-btn:hover { color: var(--accent); border-color: var(--border); }
+.pdf-btn .icon { width: 16px; height: 16px; }
+.pdf-page, .pdf-zoom {
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.pdf-page { width: 3.2em; padding: 0 4px; text-align: center; }
+.pdf-pages { padding: 0 4px; white-space: nowrap; }
+.pdf-zoom { padding: 0 4px; }
+/* PDF.js requires the scroll container to be absolutely positioned. */
+.pdf-body { position: relative; flex: 1; min-height: 0; }
+.pdf-scroll { position: absolute; inset: 0; overflow: auto; }
+[data-theme="dark"] .pdf-scroll { color-scheme: dark; }
+.pdf-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--bg-alt);
+}
+.pdf-status[hidden] { display: none; }
+noscript .pdf-status { position: static; }
+
+@media (max-width: 640px) {
+  .cv-heading { display: none; }
 }
