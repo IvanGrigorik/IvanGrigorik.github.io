@@ -19,12 +19,12 @@
 \ExplSyntaxOn
 \NewDocumentCommand{\paperentry}{mm}
 {
+      \noindent
+      \textit{ #2 }
+      \par
       \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
       \seq_pop_left:NN \l_tmpa_seq \l_tmpa_tl
-      \noindent
       \textbf{ \l_tmpa_tl }
       \seq_if_empty:NF \l_tmpa_seq { ,~ \seq_use:Nn \l_tmpa_seq { ,~ } }
-      \par
-      \textit{ #2 }
 }
 \ExplSyntaxOff
