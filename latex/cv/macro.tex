@@ -1,0 +1,30 @@
+\usepackage[scale=0.86]{geometry}
+\usepackage[unicode]{hyperref}
+\usepackage{xspace}
+\definecolor{deepblue}{rgb}{0, 0, 0.5}
+
+% Hyperlink setup
+\hypersetup{
+      colorlinks=true,      % False: boxed links; True: colored links
+      citecolor=green,      % Color of citation links (bibliography)
+      urlcolor=deepblue,          % Color of external URL links
+}
+
+\newcommand{\ig}[1]{[{\color{teal}ig: #1}]}
+\newcommand{\Fix}[1]{[\textcolor{red}{FIXME: #1}]}
+\newcommand{\pdb}{pdb\xspace}
+\newcommand{\Python}{Python\xspace}
+\newcommand{\pykokkos}{PyKokkos\xspace}
+\newcommand{\Kokkos}{Kokkos\xspace}
+\ExplSyntaxOn
+\NewDocumentCommand{\paperentry}{mm}
+{
+      \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
+      \seq_pop_left:NN \l_tmpa_seq \l_tmpa_tl
+      \noindent
+      \textbf{ \l_tmpa_tl }
+      \seq_if_empty:NF \l_tmpa_seq { ,~ \seq_use:Nn \l_tmpa_seq { ,~ } }
+      \par
+      \textit{ #2 }
+}
+\ExplSyntaxOff

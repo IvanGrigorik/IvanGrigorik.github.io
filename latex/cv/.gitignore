@@ -1,0 +1,50 @@
+# temp file
+*~
+\#*\#
+*.DS_Store
+
+# eps to pdf
+*-eps-converted-to.pdf
+
+# pdflatex build
+
+*.aux
+*.log
+main.pdf
+letter.pdf
+*.aux
+*.log
+*.pyg
+*.nav
+*.toc
+*.snm
+sup.pdf
+
+# divps & ps2pdf build
+*.bbl
+*.blg
+*.dvi
+*.ps
+*.out
+*.xcp
+*.bbl
+*.blg
+*.dvi
+*.ps
+*.out
+*.xcp
+*.vrb
+*.pdfpc
+
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+comment.cut
+formatted.tex
+camera-ready/
+
+# latexindent temp files
+*.bak*
+
+# Other packages utils
+_minted-main/

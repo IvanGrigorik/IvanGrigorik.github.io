@@ -1,0 +1,233 @@
+\input{preamble}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\vspace{-25pt}
+\section{Research Interests}
+\cvitem{}{High Performance Computing, Compilers, Debuggers, and AI for SE}
+
+\section{Education}
+\cventry{2024 - present}{Ph.D.}{The University of Texas at Austin}{}{\textit{GPA: 3.9}}{Major in Software Engineering and Systems, advised by Milos Gligoric.}
+\cventry{2020 - 2024}{B.S.}{Belarusian State University of Informatics and Radioelectronics}{}{\textit{GPA: 3.7}}{Major in Computer Science and Network Engineering}
+
+% \section{Master thesis}
+% \cvitem{title}{\emph{Title}}
+% \cvitem{supervisors}{Supervisors}
+% \cvitem{description}{Short thesis abstract}
+
+\section{Experience}
+\cventry{2024 - present}{Graduate Research Assistant}{University of Texas at Austin}{}{}{Software Validation, Compilers and High Performance Computing
+      \vspace{2pt}
+      \begin{itemize}
+            \item Implemented a debugger for HPC eDSL with $\leq2.33\times$ overhead compared to \pdb, \Python{'s} native debugger;
+            \item Developed static and dynamic analyzer tools for the existing programming language on top of its infrastructure;
+            \item Main developer and maintainer of \pykokkos, contributor of Kokkos;
+            \item Research ML for HPC optimizations, HPC eDSLs, and Python-to-C++ interoperability.
+            \item Research compiler optimization techniques, source code processing, and code testing tools;
+      \end{itemize}}
+
+\cventry{Summer 2026}{PhD Intern}{Oak Ridge National Laboratory}{\href{https://github.com/arborx/pyArborX}{\underline{pyArborX}}}{}{
+      \begin{itemize}
+            \item Designed and built a JIT compiler translating Python into C++ for ArborX, an HPC spatial-search library.
+            \item Deployed a custom AST parser and py2many-based code generator for ArborX's template-heavy C++ APIs.
+            \item Implemented a pybind11 module generator that enables JIT compilation and delayed template specialization.
+            \item Validated framework by implementing ML clustering algorithms and deploying CIs for correctness checking.
+      \end{itemize}
+}
+
+\cventry{Spring 2024}{Research Assistant}{BSUIR}{}{}{Led the research on wireless communication technology
+      \vspace{2pt}
+      \begin{itemize}
+            % \item Researched the wireless networks, like Bluetooth and WiFi, for interference;
+            \item Conducted in-depth research on the topic of harmonic oscillations and total harmonic distortion between signals in wireless networks;
+                  % \item Developed the formal method of defining interference between devices;
+            \item Developed and tested the PCB for jamming Bluetooth and WiFi devices in the shielded lab;
+                  % \item Tested the developed PCB and found corner cases of the technologies mentioned above;
+            \item Contributed to 3 different research projects over 5 months.
+      \end{itemize}}
+
+\cventry{Summer 2023}{Software Developer Intern}{AGAT - Control Systems}{}{}{Contributed to multiple network tools for the company network.
+      \vspace{2pt}
+      \begin{itemize}
+            \item Developed network controlling and monitoring software for Cisco and Dell equipment.
+            \item Implemented and designed network analysis tools for the company's local network.
+            \item Collaborated with the team to deploy an improved network management system.
+      \end{itemize}}
+
+\section{Publications}
+\cvitem{SC '26}{\paperentry{Ivan Grigorik, Gabriel Kosmacher, George Biros, Milos Gligoric}{Interactive Debugger for Performance Portable Python HPC Kernels}}
+\cvitem{SciConf '24}{\paperentry{Ivan Grigorik, Diana Kupriyanova}{Active jammer stations based on direct influence noises}}
+
+\section{Skills}
+\cvitem{Languages}{C, C++,  Python, Rust, ASM, Java, Bash, SQL;}
+\cvitem{Tools}{GCC, LLVM, Make \& CMake, CUDA, GDB, Valgrind, Docker, STL;}
+\cvitem{Domains}{Compilers, HPC, Static and Dynamic Analysis, Verification of Software;}
+\cvitem{Concepts}{System and Software Engineering, Program Testing, Sanitizing and Profiling, Design Patterns, Distributed Computing, Parallel Algorithms, Multithreading, Computer Architecture, Networking;}
+\newpage
+
+\section{Services and event participation}
+\cvitem{2026}{CGO '27 -- artifact evaluator.\newline
+      CGO '27 -- sub-reviewer.\newline
+      OOPSLA '26 -- sub-reviewer.\newline
+      UT '26 -- PhD student participant in faculty hiring process.}
+\cvitem{2025}{CGO '25 -- sub-reviewer}
+\subsection{Presentations}
+% \cvitem {TODO: add SC26 presentation here + pkdb paper with the ref to the SC journal}
+
+\cvitem{2026}{SC '26: Interactive Debugger for Performance Portable Python HPC kernels}
+\cvitem{2026}{AMD iMAGiNE Symposium.}
+\cvitem{2026}{Predictive Science Academic Alliance Program (PSAAP) presentation: \pykokkos ecosystem and development cycle. }
+\cvitem{2026}{High Performance Software Foundation (HPSF) presentation: Pythonizing \pykokkos.}
+\cvitem{2025}{AMD iMAGiNE Symposium.}
+\cvitem{2024 - 2026}{Co-organized the Joint UT-Cornell Software Engineering Seminar Series.}
+
+\section{Projects}
+\cvitem{xbash}{A fork of bash with static and dynamic analysis tools and extended builtins.}
+\cvitem{cuRTX}{Open-source ray tracing tool written in CUDA and C++, inspired by RTX-in-one-weekend book.}
+\cvitem{GameOfLife}{Pet-project, Conway's Game of Life written in C++ and SFML.}
+\cvitem{HvC}{Fork of HIPIFY that compares heterogeneous computing platforms (CUDA, HIP, etc.).}
+\cvitem{\pykokkos}{Framework for writing high-performance Python code similar to Numba. *Current maintainer.}
+
+% \section{Relevant coursework}
+
+% \cvlistdoubleitem{Programming languages and computer design}{System software}
+% \cvlistdoubleitem {Computer Architecture}{HPC architecture}
+% \cvlistdoubleitem {Software Networks}{Hardware Systems}
+% \cvlistdoubleitem {Compilers}{Computer Graphics}
+
+\section{Honors and awards}
+\cvitem{2024}{Graduate School Fellowship, University of Texas at Austin.}
+\cvitem{2024}{Outstanding paper of BSUIR 60th SciConf24 \newline Paper: Active jammer stations based on direct influence noises.}
+
+%   \begin{itemize}
+%   \item Sub-achievement (a);
+%   \item Sub-achievement (b), with sub-sub-achievements (don't do this!);
+%     \begin{itemize}
+%     \item Sub-sub-achievement i;
+%     \item Sub-sub-achievement ii;
+%     \item Sub-sub-achievement iii;
+%     \end{itemize}
+%   \item Sub-achievement (c);
+%   \end{itemize}
+% \item Achievement 3
+% \item Achievement 4
+% \cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2\newline{}Description line 3}
+% \subsection{Miscellaneous}
+% \cventry{year--year}{Job title}{Employer}{City}{}{Description}
+
+% \section{Languages}
+% \cvitemwithcomment{Language 1}{Skill level}{Comment}
+% \cvitemwithcomment{Language 2}{Skill level}{Comment}
+% \cvitemwithcomment{Language 3}{Skill level}{Comment}
+% \cvitemwithcomment{Language 4}{Skill level}{Comment}
+
+% \section{Computer skills}
+% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
+% \cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
+% \cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+%% Skill matrix as an alternative to rate one's skills, computer or other. 
+
+%% Adjusts width of skill matrix columns. 
+%% Usage \setcvskillcolumns[<width>][<factor>][<exp_width>]
+%% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
+%% Examples:
+% \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
+% \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
+% \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+% \setcvskillcolumns[][0.45][\widthof{``Year''}]%
+% \setcvskillcolumns[\widthof{``Languag''}][0.48][]
+% \setcvskillcolumns[\widthof{``Languag''}]%
+
+%% Adjusts width of legend columns. Usage \setcvskilllegendcolumns[<width>][<factor>]
+%% <factor> needs to be between 0 and 1. <width> should be a length smaller than \textwidth
+%% Examples:
+% \setcvskilllegendcolumns[][0.45]
+% \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
+% \setcvskilllegendcolumns[0ex][0.46]% this is usefull for the banking style
+
+%% Add a legend if you are using \cvskill{<1-5>} command or \cvskillentry
+%% Usage \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \cvskilllegend % insert default legend without lines
+% \cvskilllegend*[1em]{}% adjust post spacing
+% \cvskilllegend*{Legend}%  Alternatively add a description string
+%% adjust the legend entries for other languages, here German
+% \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte\,/\,Spezialist]{Legende}
+
+%% Alternative legend style with the first three skill levels in one column
+%% Usage \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \setcvskilllegendcolumns[][0.6]%  works for classic, casual, banking
+% \setcvskilllegendcolumns[][0.55]%  works better for oldstyle and fancy
+% \cvskillplainlegend{}
+% \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
+
+%% Add a head of the skill matrix table with descriptions.
+%% Usage \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+% \cvskillhead[-0.1em]%   this inserts the standard legend in english and adjust padding
+%% Adjust head of the skill matrix for other languages
+% \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
+
+%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}% 
+%% Example usages:
+% \cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
+% \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
+% \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
+% \cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional 
+% \cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
+%% \cvskill{<0-5>} command
+% \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
+
+% \section{Soft skills}
+% \cvitem{hobby 1}{Description}
+% \cvitem{hobby 2}{Description}
+% \cvitem{hobby 3}{Description}
+
+% \section{Interests}
+% \cvitem{ }{Decription 1}
+% \cvitem{ }{Decription 2}
+% \cvitem{ }{Decription 3}
+
+% \section{Extra 1}
+% \cvlistitem{Item 1}
+% \cvlistitem{Item 2}
+% \cvlistitem{Item 3}
+
+% \section{Extra 2}
+% \cvlistdoubleitem{Item 1}{Item 4}
+% \cvlistdoubleitem{Item 2}{Item 5\cite{book2}}
+% \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+
+% \section{References}
+% \begin{cvcolumns}
+%   \cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
+%   \cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
+%   \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
+% \end{cvcolumns}
+
+% % Publications from a BibTeX file without multibib
+% %  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+% %  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+% \nocite{*}
+% \bibliographystyle{plain}
+% \bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+% \nocitebook{book1,book2}
+% \bibliographystylebook{plain}
+% \bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+% \nocitemisc{misc1,misc2,misc3}
+% \bibliographystylemisc{plain}
+% 'publications' is the name of a BibTeX file
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Cover letter
+\clearpage
+% \input{cover-letter}
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+%% end of file `template.tex'.
+
