@@ -13,3 +13,6 @@ node_modules
 package-lock.json
 
 /index.html
+# Built from latex/cv/ by CI, see .github/workflows/deploy.yml
+/materials/CV_IvanGrigorik.pdf
+/cv.html

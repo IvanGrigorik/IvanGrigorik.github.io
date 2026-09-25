@@ -91,14 +91,58 @@ function initNewsToggle() {
   list.insertAdjacentElement('afterend', btn);
 
   var expanded = false;
+  var animating = false;
   btn.addEventListener('click', function () {
+    if (animating) return;
     expanded = !expanded;
-    extra.forEach(function (item) {
-      item.classList.toggle('news-item-hidden', !expanded);
-    });
+
+    // Measure the collapsed and expanded heights, then slide the list's
+    // height between them. When collapsing, the extra items stay visible
+    // until the slide ends so they are clipped rather than vanishing.
+    var from = list.offsetHeight;
+    setHidden(extra, !expanded);
+    var to = list.offsetHeight;
+    if (!expanded) setHidden(extra, false);
+
     btn.textContent = expanded ? 'Show less' : 'Show all news';
     btn.classList.toggle('expanded', expanded);
+
+    animating = true;
+    slideHeight(list, from, to, function () {
+      setHidden(extra, !expanded);
+      animating = false;
+    });
   });
+}
+
+function setHidden(items, hidden) {
+  items.forEach(function (item) {
+    item.classList.toggle('news-item-hidden', hidden);
+  });
+}
+
+var SLIDE_MS = 300;
+
+function slideHeight(el, from, to, onDone) {
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || from === to) {
+    onDone();
+    return;
+  }
+
+  el.style.overflow = 'hidden';
+  el.style.height = from + 'px';
+  el.offsetHeight; // force reflow so the start height is applied
+  el.style.transition = 'height ' + SLIDE_MS + 'ms ease-in-out';
+  el.style.height = to + 'px';
+
+  setTimeout(function () {
+    el.style.transition = '';
+    el.style.height = '';
+    el.style.overflow = '';
+    onDone();
+  }, SLIDE_MS);
 }
 
 function initBibtexCopy() {

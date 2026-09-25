@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Assembles index.html from the section files in partials/.
+"""Assembles index.html and cv.html from the files in partials/.
 
-The site is a single scrolling page, but its markup is split into one file
+The main site is a single scrolling page, but its markup is split into one file
 per section for easier editing. Run this script after changing anything in
-partials/ to regenerate index.html:
+partials/ to regenerate both pages:
 
     python3 build.py
 """
@@ -32,42 +32,59 @@ def indent(text, spaces=2):
     return "\n".join(pad + line if line else line for line in text.split("\n"))
 
 
-def main():
-    nav = read("nav.html")
-    footer = read("footer.html")
-    sections = "\n\n".join(indent(read(name)) for name in SECTIONS)
-
-    html = f"""<!DOCTYPE html>
+def page(title, description, og_description, body, scripts):
+    return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <script src="assets/js/theme-init.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ivan Grigorik</title>
-<meta name="description" content="Ivan Grigorik - PhD student in Electrical and Computer Engineering, The University of Texas at Austin. Research in compilers, software testing, and programming languages.">
-<meta property="og:title" content="Ivan Grigorik">
-<meta property="og:description" content="PhD student in Electrical and Computer Engineering, The University of Texas at Austin.">
+<title>{title}</title>
+<meta name="description" content="{description}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{og_description}">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-{nav}
+{body}
 
-<main id="top">
-{sections}
-</main>
+{read("footer.html")}
 
-{footer}
-
-<script src="assets/js/main.js"></script>
+{scripts}
 </body>
 </html>
 """
 
-    (ROOT / "index.html").write_text(html)
+
+def main():
+    nav = read("nav.html")
+    sections = "\n\n".join(indent(read(name)) for name in SECTIONS)
+
+    index = page(
+        title="Ivan Grigorik",
+        description="Ivan Grigorik - PhD student in Electrical and Computer Engineering, The University of Texas at Austin. Research in compilers, software testing, and programming languages.",
+        og_description="PhD student in Electrical and Computer Engineering, The University of Texas at Austin.",
+        body=f'{nav}\n\n<main id="top">\n{sections}\n</main>',
+        scripts='<script src="assets/js/main.js"></script>',
+    )
+    (ROOT / "index.html").write_text(index)
     print("Wrote index.html")
+
+    # The CV page is a PDF viewer for materials/CV_IvanGrigorik.pdf, which CI
+    # builds from latex/cv/ (see .github/workflows/deploy.yml).
+    cv = page(
+        title="CV - Ivan Grigorik",
+        description="Curriculum vitae of Ivan Grigorik, PhD student in Electrical and Computer Engineering, The University of Texas at Austin.",
+        og_description="Curriculum vitae of Ivan Grigorik.",
+        body=read("cv.html"),
+        scripts='<script src="assets/js/main.js"></script>\n'
+                '<script src="assets/js/pdf-viewer.js"></script>',
+    )
+    (ROOT / "cv.html").write_text(cv)
+    print("Wrote cv.html")
 
 
 if __name__ == "__main__":

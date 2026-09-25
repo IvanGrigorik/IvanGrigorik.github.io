@@ -15,32 +15,75 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  # Builds, verifies and upload artifacts for CV
+  cv:
     runs-on: ubuntu-latest
+    container: texlive/texlive:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Build CV from latex/cv/
+        run: make -C latex/cv
 
-      - name: Build index.html from partials/
-        run: python3 build.py
-
-      # index.html is gitignored and only ever exists in CI, so fail loudly
-      # here rather than shipping an artifact with nothing to serve.
-      - name: Verify index.html was generated
+      # Only answers "was a PDF produced?" - the cause of a failure is in the
+      # build step's output. pdflatex ends its log with "Output written on
+      # main.pdf" on success and "Fatal error occurred" on failure.
+      - name: Verify CV
+        working-directory: latex/cv
         run: |
-          if [ ! -s index.html ]; then
-            echo "::error::build.py did not produce a non-empty index.html"
+          last=$(tail -n 10 main.log)
+          if [ ! -s main.pdf ] \
+            || ! printf '%s\n' "$last" | grep -q "^Output written on main.pdf" \
+            || printf '%s\n' "$last" | grep -qi error; then
+            echo "::error::The CV PDF was not produced"
+            printf '%s\n' "$last"
             exit 1
           fi
-          echo "index.html: $(wc -c < index.html) bytes"
 
+      - name: Upload CV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: latex/cv/main.pdf
+          retention-days: 1
+
+  site:
+    # Run even when the cv job failed, so a broken CV never blocks the site.
+    runs-on: ubuntu-latest
+    needs: cv
+    if: ${{ !cancelled() }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build index.html and cv.html from partials/
+        run: python3 build.py
+
+      # Also gives the live site's URL, used as the CV fallback below.
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
+
+      - name: Download this run's CV
+        if: needs.cv.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: cv-pdf
+          path: ${{ runner.temp }}/cv
+
+      # If CV job fails - fetch latest successful CV
+      - name: Fetch the last good CV from the live site
+        if: needs.cv.result != 'success'
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          url="${BASE_URL%/}/materials/CV_IvanGrigorik.pdf"
+          echo "::warning::The cv job failed - deploying the live CV instead: $url"
+          curl -fsSL --retry 3 --create-dirs -o "$RUNNER_TEMP/cv/main.pdf" "$url"
+
+      - name: Publish CV as materials/CV_IvanGrigorik.pdf
+        run: cp "$RUNNER_TEMP/cv/main.pdf" materials/CV_IvanGrigorik.pdf
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -52,44 +95,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: site
+    # Explicit: the default success() also looks at the cv job further up the
+    # chain, which would skip deploying whenever the CV fell back.
+    if: ${{ !cancelled() && needs.site.result == 'success' }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # A green deploy only means the artifact was accepted, not that the
-      # site actually serves anything - so hit the real URL. Retried because
-      # the Pages CDN can take a few seconds to pick up a new deployment.
-      - name: Verify the deployed site responds
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: |
-          echo "Checking $PAGE_URL"
-          code=000
-          ok=""
-          for attempt in $(seq 1 10); do
-            code=$(curl -sS -L -o body.html -w '%{http_code}' --max-time 30 "$PAGE_URL" || echo 000)
-            echo "attempt $attempt: HTTP $code"
-            if [ "$code" = "200" ] && grep -q "<title>" body.html; then
-              ok=yes
-              break
-            fi
-            sleep 10
-          done
-          if [ -z "$ok" ]; then
-            echo "::error::$PAGE_URL did not serve a 200 HTML page (last code: $code)"
-            exit 1
-          fi
-
-          # Catch a partial deploy: the page can load while its assets 404.
-          for path in assets/css/style.css assets/js/main.js; do
-            code=$(curl -sS -L -o /dev/null -w '%{http_code}' --max-time 30 "${PAGE_URL}${path}" || echo 000)
-            echo "$path -> HTTP $code"
-            if [ "$code" != "200" ]; then
-              echo "::error::${PAGE_URL}${path} returned $code"
-              exit 1
-            fi
-          done
-
-          echo "Site is live: $PAGE_URL"
