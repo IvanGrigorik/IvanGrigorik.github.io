@@ -501,13 +501,16 @@ footer {
 }
 
 /* CV page (cv.html) */
+/* Equal 1fr side columns keep the heading centered on the page. */
 .cv-toolbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 28px 0 20px;
 }
+.cv-toolbar > .cv-btn { justify-self: start; }
+.cv-actions { display: flex; gap: 8px; justify-self: end; }
 .cv-heading {
   margin: 0;
   font-size: 1.1rem;
@@ -615,5 +618,6 @@ footer {
 noscript .pdf-status { position: static; }
 
 @media (max-width: 640px) {
-  .cv-heading { display: none; }
+  .cv-toolbar { display: flex; justify-content: space-between; }
+  .cv-heading, .cv-btn-long { display: none; }
 }
