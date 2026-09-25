@@ -1,0 +1,77 @@
+Graduate Research Assistant
+University of Texas at Austin
+August 2024 -- now
+Austin, TX, USA
+
+Implemented a debugger for HPC eDSL with ≤ 2.33× overhead compared to pdb, Python’s native debugger;
+Developed static and dynamic analyzer tools for the existing programming language on top of its infrastructure;
+Main developer and maintainer of PyKokkos, contributor of Kokkos;
+Research ML for HPC optimizations, HPC eDSLs, and Python-to-C++ interoperability.
+Research compiler optimization techniques, source code processing, and code testing tools;
+
+--
+
+PhD Intern
+Oak Ridge National Laboratory
+May 2026 -- August 2026
+Oak Ridge, TN, USA
+
+Designed and built a JIT compiler translating Python into C++ for ArborX, an HPC spatial-search library.
+Deployed a custom AST parser and py2many-based code generator for ArborX’s template-heavy C++ APIs.
+Implemented a pybind11 module generator that enables JIT compilation and delayed template specialization.
+Validated framework by implementing ML clustering algorithms and deploying CIs for correctness checking.
+
+--
+
+Research Assistant
+BSUIR
+April 2024 -- June 2024
+Misnk, Belarus
+
+Led the research on wireless communication technology
+Conducted in-depth research on the topic of harmonic oscillations and total harmonic distortion between signals in
+wireless networks;
+Developed and tested the PCB for jamming Bluetooth and WiFi devices in the shielded lab;
+Contributed to 3 different research projects over 5 months.
+
+--
+
+Software Developer Intern
+AGAT - Control Systems
+May 2023 -- August 2023
+Minsk, Belarus
+
+Contributed to multiple network tools for the company network.
+Developed network controlling and monitoring software for Cisco and Dell equipment.
+Implemented and designed network analysis tools for the company’s local network.
+Collaborated with the team to deploy an improved network management system.
+
+==================================
+
+
+Education:
+
+The University of Texas at Austin
+Electrical and Computer Engineering
+PhD
+GPA: 3.9
+2024 -- 2027
+
+---
+
+Belarusian State University of Informatics and Radioelectronics
+B.S. (Bachelors)
+Computer Science & Networks 
+GPA: 3.7
+2020 -- 2024
+
+==================================
+
+Skills:
+
+Languages: C, C++, Python, Rust, ASM, Java, Bash, SQL;
+Tools: GCC, LLVM, Make & CMake, CUDA, GDB, Valgrind, Docker, STL;
+Domains: Compilers, HPC, Static and Dynamic Analysis, Verification of Software;
+Concepts: System and Software Engineering, Program Testing, Sanitizing and Profiling, Design Patterns, Distributed Computing, Parallel Algorithms, Multithreading, Computer Architecture, Networking;
+
+
