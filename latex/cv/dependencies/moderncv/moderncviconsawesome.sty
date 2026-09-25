@@ -1,0 +1,114 @@
+%% start of file `moderncviconsawesome.sty'.
+%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2026 moderncv maintainers (github.com/moderncv).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+%-------------------------------------------------------------------------------
+%                identification
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{moderncviconsawesome}[2026-06-24 v2.6.1 modern curriculum vitae icons: awesome]
+
+%-------------------------------------------------------------------------------
+%                required packages
+%-------------------------------------------------------------------------------
+% Font Awesome font
+\RequirePackage{fontawesome6}
+\RequirePackage{xcolor}
+
+%-------------------------------------------------------------------------------
+%                set colors
+%-------------------------------------------------------------------------------
+\usepackage{moderncvcolors}
+
+\providecolor{address}{named}{default-socialicon-color}
+\providecolor{mobilephone}{named}{default-socialicon-color}
+\providecolor{fixedphone}{named}{default-socialicon-color}
+\providecolor{faxphone}{named}{default-socialicon-color}
+\providecolor{email}{named}{default-socialicon-color}
+\providecolor{homepage}{named}{default-socialicon-color}
+\providecolor{googlescholar}{named}{default-socialicon-color}
+\providecolor{linkedin}{named}{default-socialicon-color}
+\providecolor{xing}{named}{default-socialicon-color}
+\providecolor{twitter}{named}{default-socialicon-color}
+\providecolor{mastodon}{named}{default-socialicon-color}
+\providecolor{github}{named}{default-socialicon-color}
+\providecolor{gitlab}{named}{default-socialicon-color}
+\providecolor{stackoverflow}{named}{default-socialicon-color}
+\providecolor{bitbucket}{named}{default-socialicon-color}
+\providecolor{skype}{named}{default-socialicon-color}
+\providecolor{orcid}{named}{default-socialicon-color}
+\providecolor{researchgate}{named}{default-socialicon-color}
+\providecolor{telegram}{named}{default-socialicon-color}
+\providecolor{whatsapp}{named}{default-socialicon-color}
+\providecolor{discord}{named}{default-socialicon-color}
+\providecolor{twitch}{named}{default-socialicon-color}
+\providecolor{youtube}{named}{default-socialicon-color}
+\providecolor{tiktok}{named}{default-socialicon-color}
+\providecolor{instagram}{named}{default-socialicon-color}
+\providecolor{soundcloud}{named}{default-socialicon-color}
+\providecolor{steam}{named}{default-socialicon-color}
+\providecolor{xbox}{named}{default-socialicon-color}
+\providecolor{playstation}{named}{default-socialicon-color}
+\providecolor{battlenet}{named}{default-socialicon-color}
+\providecolor{born}{named}{default-socialicon-color}
+\providecolor{signal}{named}{default-socialicon-color}
+\providecolor{medium}{named}{default-socialicon-color}
+
+%-------------------------------------------------------------------------------
+%                all symbols described in moderncv.cls
+%-------------------------------------------------------------------------------
+\renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\tiny\faIcon[regular]{circle}}} % alternative: \faIcon{circle} (solid style)
+%\renewcommand*{\labelitemii}         {\strut\textcolor{color1}{\large\bfseries-}}            % no change from default in moderncv.cls
+%\renewcommand*{\labelitemiii}        {\strut\textcolor{color1}{\rmfamily\textperiodcentered}}% no change from default in moderncv.cls
+%\renewcommand*{\labelitemiv}         {\labelitemiii}                                         % no change from default in moderncv.cls
+
+
+%\renewcommand*{\addresssymbol}            {}
+\renewcommand*{\mobilephonesymbol}        {{\color{mobilephone}\small\faIcon{mobile-screen}}~}            % alternative: \faIcon{mobile} (solid style)
+\renewcommand*{\fixedphonesymbol}         {{\color{fixedphone}\small\faIcon{phone}}~}             % alternative: \faIcon{phone-flip} (reversed)
+\renewcommand*{\faxphonesymbol}           {{\color{faxphone}\small\faIcon{fax}}~}                % alternative: \faIcon{print}
+\renewcommand*{\emailsymbol}              {{\color{email}\small\faIcon[regular]{envelope}}~}  % alternative: \faIcon{inbox}, \faIcon{envelope} (solid style)
+\renewcommand*{\homepagesymbol}           {{\color{homepage}\small\faIcon{earth-americas}}~}      % alternative: \faIcon{house}, \faIcon{house-chimney}, \faIcon{globe}, \faIcon{earth-europe}, \faIcon{earth-africa}, \faIcon{earth-asia}, \faIcon{earth-oceania}
+\renewcommand*{\linkedinsocialsymbol}     {{\color{linkedin}\small\faIcon{linkedin-in}}~}         % alternative: \faIcon{linkedin}
+\renewcommand*{\xingsocialsymbol}         {{\color{xing}\small\faIcon{xing}}~}               % alternative: \faIcon{square-xing}
+\renewcommand*{\twittersocialsymbol}      {{\color{twitter}\small\faIcon{twitter}}~}            % alternative: \faIcon{square-twitter}, \faIcon{x-twitter}, \faIcon{square-x-twitter}
+\renewcommand*{\mastodonsocialsymbol}     {{\color{mastodon}\small\faIcon{mastodon}}~}
+\renewcommand*{\githubsocialsymbol}       {{\color{github}\small\faIcon{github}}~}             % alternative: \faIcon{square-github}, \faIcon{github-alt}
+\renewcommand*{\gitlabsocialsymbol}       {{\color{gitlab}\small\faIcon{gitlab}}~}
+\renewcommand*{\stackoverflowsocialsymbol}{{\color{stackoverflow}\small\faIcon{stack-overflow}}~}
+\renewcommand*{\bitbucketsocialsymbol}    {{\color{bitbucket}\small\faIcon{bitbucket}}~}
+\renewcommand*{\skypesocialsymbol}        {{\color{skype}\small\faIcon{skype}}~}
+\renewcommand*{\orcidsocialsymbol}        {{\color{orcid}\small\faIcon{orcid}}~}
+\renewcommand*{\researchgatesocialsymbol} {{\color{researchgate}\small\faIcon{researchgate}}~}
+%\renewcommand*{\researcheridsocialsymbol} {}
+\renewcommand*{\googlescholarsocialsymbol}{{\color{googlescholar}\small\faIcon{google-scholar}}~}
+\renewcommand*{\telegramsocialsymbol}     {{\color{telegram}\small\faIcon{telegram}}~}
+\renewcommand*{\whatsappsocialsymbol}     {{\color{whatsapp}\small\faIcon{whatsapp}}~}
+\renewcommand*{\discordsocialsymbol}      {{\color{discord}\small\faIcon{discord}}~}
+\renewcommand*{\twitchsocialsymbol}       {{\color{twitch}\small\faIcon{twitch}}~}
+\renewcommand*{\youtubesocialsymbol}      {{\color{youtube}\small\faIcon{youtube}}~}
+\renewcommand*{\tiktoksocialsymbol}       {{\color{tiktok}\small\faIcon{tiktok}}~}
+\renewcommand*{\instagramsocialsymbol}    {{\color{instagram}\small\faIcon{instagram}}~}
+\renewcommand*{\soundcloudsocialsymbol}   {{\color{soundcloud}\small\faIcon{soundcloud}}~}
+\renewcommand*{\steamsocialsymbol}        {{\color{steam}\small\faIcon{steam}}~}
+\renewcommand*{\xboxsocialsymbol}         {{\color{xbox}\small\faIcon{xbox}}~}
+\renewcommand*{\playstationsocialsymbol}  {{\color{playstation}\small\faIcon{playstation}}~}
+\renewcommand*{\battlenetsocialsymbol}    {{\color{battlenet}\small\faIcon{battle-net}}~}
+\renewcommand*{\signalsocialsymbol}       {{\color{signal}\small\faIcon{signal-messenger}}~}
+%\renewcommand*{\matrixsocialsymbol}       {}
+% No arxiv icon in fontawesome6 (v6.7.2-3) or fontawesome7 (v7.1.0-1)
+% \renewcommand*{\arxivsocialsymbol}        {{\color{arxiv}{\small\faIcon{arxiv}}}~}
+% No inspire icon in fontawesome6 (v6.7.2-3) or fontawesome7 (v7.1.0-1)
+% \renewcommand*{\inspiresocialsymbol}      {{\color{inspire}{\small\faIcon{inspire}}}~}
+\renewcommand*{\bornsymbol}               {{\color{born}\raisebox{.5ex}{\tiny\faIcon{asterisk}}}~}           % alternative: \faIcon{baby-carriage}
+\renewcommand*{\mediumsocialsymbol}     {{\color{medium}\small\faIcon{medium}}~}
+
+
+\endinput
+
+
+%% end of file `moderncviconsawesome.sty'.
